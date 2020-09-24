@@ -1,8 +1,11 @@
 Ball ball = new Ball(350,350,60);    //ball
 Paddle paddleRight = new Paddle(670,height,30,200);  ///paddle right
 Paddle paddleLeft = new Paddle(0,height,30,200);   /// paddle left
+//PongGame scoreLeft = new PongGame();
+//PongGame scoreRight = new PongGame();
 
-
+int scoreLeft = 0;
+int scoreRight = 0;
 void setup(){
   size(700,700);
   
@@ -21,8 +24,11 @@ void draw(){
     paddleLeft.Paddlemove();
   }
   
-  
-  
+  textSize(40);
+  textAlign(CENTER);
+  text(scoreRight, width/2+30, 30); // Right side score
+  text(scoreLeft, width/2-30, 30); // Left side score
+
 }
 
 class Ball{
@@ -39,8 +45,8 @@ class Ball{
     x = pos_x;
     y = pos_y;
     diameter = temp_diameter;
-    speedX = 5;   ///speed ball
-    speedY = 5;   
+    speedX = 2;   ///speed ball
+    speedY = 2;   
     c = (255);
   }
     
@@ -63,9 +69,11 @@ class Ball{
 }
 class PongGame{
   
-  void on_touch_move(){  
-  
+  void score(){ 
+    
   }
+  
+ 
 
 }
 
