@@ -1,6 +1,8 @@
-Ball ball = new Ball(width,height,50,60);    //ball
-Paddle paddle2 = new Paddle(670,height,30,200);  ///paddle right
-Paddle paddle1 = new Paddle(0,height,30,200);   /// paddle left
+Ball ball = new Ball(350,350,60);    //ball
+Paddle paddleRight = new Paddle(670,height,30,200);  ///paddle right
+Paddle paddleLeft = new Paddle(0,height,30,200);   /// paddle left
+
+
 void setup(){
   size(700,700);
   
@@ -8,8 +10,19 @@ void setup(){
 void draw(){
   background(0);
   ball.display();
-  paddle1.display();
-  paddle2.display();
+  ball.move();
+  paddleLeft.display();
+  paddleRight.display();
+  rect(width/2-5,0,10,height);   /// Demarcation line
+  
+  if(mouseX > width/2){         ///condition
+    paddleRight.Paddlemove();
+  }else{
+    paddleLeft.Paddlemove();
+  }
+  
+  
+  
 }
 
 class Ball{
@@ -20,17 +33,22 @@ class Ball{
   int speedY;
   color c;
   int diameter1;
+  
   //constructor method
-  Ball(int pos_x,int pos_y, int temp_diameter ,int temp_diameter1){
+  Ball(int pos_x,int pos_y, int temp_diameter ){
     x = pos_x;
     y = pos_y;
     diameter = temp_diameter;
-    diameter = temp_diameter1;
-    speedX = 0;
-    speedY = 0;
+    speedX = 5;   ///speed ball
+    speedY = 5;   
     c = (255);
   }
     
+  void move(){ 
+    /// Add speed to location
+    y = y + speedY;
+    x = x + speedX;
+  }
   
   
   void display(){
@@ -38,11 +56,12 @@ class Ball{
     ellipse(x,y,diameter,diameter);  //draw ball
   } 
   
-  void move(){  
-  }
+  
+
+  
   
 }
-class Score{
+class PongGame{
   
   void on_touch_move(){  
   
@@ -70,14 +89,23 @@ class Paddle{
   }
  
   
-  void move(){ 
+  void Paddlemove(){         ///Paddlemove with mouse
+    if(dist(px,0,mouseX,0) < width/2){
+      if(mousePressed){
+        py = mouseY;
+      }
+    }
+    if(dist(px,0,mouseX,0) > width - width/2){
+      if(mousePressed){
+        py = mouseY;
+      }
+    }
   }
   
   void display(){
     fill(c);   //set drawing color paddle
     rect(px,py,w,h);  //draw paddle
   }
-  
   
   
 }
