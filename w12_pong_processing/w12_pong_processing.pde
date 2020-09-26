@@ -102,18 +102,7 @@ class PongGame{
     if (ball.top() < 0) {
     ball.speedY = -ball.speedY;
     }
-    if (paddleLeft.down() > height) {
-    paddleLeft.py = height-paddleLeft.h/2;
-    }
-    if (paddleLeft.top() < 0) {
-    paddleLeft.py = paddleLeft.h/2;
-    }
-    if (paddleRight.down() > height) {
-    paddleRight.py = height-paddleRight.h/2;
-    }
-    if (paddleRight.top() < 0) {
-    paddleRight.py = paddleRight.h/2;
-    }
+    
   }
   void paddle_bounce(){    ///Conditions for the bounce of the ball from Paddle
     if ( ball.left() < paddleLeft.right() && ball.y > paddleLeft.top() && ball.y < paddleLeft.down()){
@@ -142,8 +131,8 @@ class Paddle{
     py = pos_y;
     w = tempW;
     h = tempH;
-    speedX = 0;
-    speedY = 0;
+    speedX = 5;
+    speedY = 5;
     c = (255);
   }
  
